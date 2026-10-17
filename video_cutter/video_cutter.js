@@ -683,7 +683,7 @@ function cutToFile(format) {
         vfArgs.push("scale=" + [outputSize.width, outputSize.height, "flags=lanczos"].join(":"))
     }
     // MKV: 无损复制所有轨道
-    if (format === 'mkv') { ffArgs = ffArgs.concat(['-map', '0', '-c', 'copy', outPath]); }
+    if (format === 'mkv') { ffArgs = ffArgs.concat(['-map', '0:v?', '-map', '0:a?', '-map', '0:s?', '-c', 'copy', outPath]); }
     // GIF: 生成高质量调色板并重编码
     else if (format === 'gif') { ffArgs = ffArgs.concat(['-vf', vfArgs.concat(["split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse=dither=sierra2_4a"]).join(','), outPath]); }
     // AVIF: 使用 libaom-av1 编码 (去除音频) -cpu-used 6 还挺快的
