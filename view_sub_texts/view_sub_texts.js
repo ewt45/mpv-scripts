@@ -564,7 +564,7 @@ ffmpeg.extractSubTrackFromVideo = function (outFormat, filepath, trackId) {
 }
 
 /** 将给定字幕文本转换为 srt 格式的字幕文本。@returns {string} */
-ffmpeg.formatSubToSrt = function (subText) { return ffmpeg.command(['-y', '-v', 'quiet', '-i', 'pipe:', '-f', 'srt', '-'], subText) }
+ffmpeg.formatSubToSrt = function (subText) { return !subText ? "" : ffmpeg.command(['-y', '-v', 'quiet', '-i', 'pipe:', '-f', 'srt', '-'], subText) }
 
 /** 为函数包裹 try catch 并执行。第二个往后的参数会传入 func. */
 function runCatching(func) {
